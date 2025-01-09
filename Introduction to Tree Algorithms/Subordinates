@@ -1,0 +1,25 @@
+int dfs(vector<vector<int>> &adj, vector<int> &subordinates, int node){
+    if(adj[node].size() == 0){
+        subordinates[node] = 0;
+        return 1;
+    }
+    int ans = 0;
+    for(auto &child : adj[node]){
+        ans += dfs(adj, subordinates, child);
+    }
+    subordinates[node] = ans;
+    return (ans + 1);
+}
+void solve(){
+    int n;
+    cin >> n;
+    vector<vector<int>> adj(n+1);
+    rep(i, 2, n+1){
+        int parent;
+        cin >> parent;
+        adj[parent].eb(i);
+    }
+    vector<int> subordinates(n+1, -1);
+    dfs(adj, subordinates, 1);
+    rep(i, 1, n+1)  cout << subordinates[i] << ' ';
+}
