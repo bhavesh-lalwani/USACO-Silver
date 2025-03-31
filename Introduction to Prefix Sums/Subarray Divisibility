@@ -85,7 +85,7 @@ void solve(){
         cin >> x;
         pref += x;
         ll p = abs(pref);
-        ans += a[(pref + ((p + n - 1ll)/n)*n)%n];
+        ans += a[(pref + ((p + n - 1ll)/n)*n)%n]; // or just (p%n + n)%n
         a[(pref + ((p + n - 1ll)/n)*n)%n]++;
     }
     cout << ans;
